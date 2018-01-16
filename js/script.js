@@ -4,35 +4,60 @@
 // igpay, banana becomes ananabsay, and aadvark becomes aadvarkay.
 // CREATE THE FUNCTIONS BELOW
 function ay (string) {
-	return string + "ay";
+	return string + "ay ";
 }
 
 function sentenceToPigLatin (string) {
-	return string.slipt (' ');
+	return string.split (' ');
 }
+
+function firstletter (string) {
+	return string.slice(0,1);
+}
+
+
 
 // Document Ready Function. All of your jQuery should go in here. 
 $( document ).ready(function() {
+
+//click handler 
   $("#button").click( function() {
-	var input = $('input').val();
-	var pigLatinWord = ay(input);
-	$("#container").append(pigLatinWord);
+	
+	$("#div").empty();
+	
+	var input = $("#input").val();
+	var pigLatinWord = sentenceToPigLatin(input);
+	var vowels = [
+	'a', 'e', 'i', 'o', 'u'
+	]
+	
+//for loop	
+	for ( var ending = 0; ending < pigLatinWord.length; ending = ending + 1) {
+		
+		var first = firstletter(pigLatinWord[ending]);
+		var last = pigLatinWord[ending].slice (1,pigLatinWord[ending].length);
+		
+		if (first === 'a' || first == 'e' || first == 'i' || first == 'o' || first == 'u' ) {  
+			
+			$("#div").append( ay( pigLatinWord[ending] ) );
+			
+		} else {	
+			
+			var word = last + first;
+			$("#div").append( ay ( word ) );
+			
+		}
+		
+		
+	}	
+	
+	
+	
   });
 
 
+		
 
 });
-
-
-// Create the wordToPigLatin function that takes a word as a parameter and returns a transfromed word. 
-
-
-
-
-
-
-// Create the sentenceToPigLatin function that takes a sentence as a parameter
-	//Loops through all the words in the sentence and transforms each word
-	//It should return a transfromed sentance
 
 
