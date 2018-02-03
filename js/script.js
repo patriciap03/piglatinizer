@@ -17,6 +17,9 @@ function firstletter (string) {
 function secondletter (string) {
 	return string.slice(1,2);
 }
+function thirdletter (string) {
+	return string.slice(2,3);
+}
 
 
 // Document Ready Function. All of your jQuery should go in here. 
@@ -37,38 +40,32 @@ $( document ).ready(function() {
 	for ( var ending = 0; ending < pigLatinWord.length; ending = ending + 1) {
 		
 		var eachword = pigLatinWord[ending];
+		var first = firstletter(eachword);   
+		var second = secondletter(eachword);
+		var third = thirdletter(eachword);
+			
+			if ( first!=='a' || first!=='e' || first!=='i' || first!=='o' || first!=='u' && second!=='a' || second!=='e' || second!=='i' || second!=='o'|| second!=='u' && third!=='a' || third!=='e' || third!=='i' || third!=='o' || third!=='u' ) {
+	
+				var thirdend = eachword.slice(3, eachword.length);
+				$("#div").append( ay( thirdend + first + second + third ) );
+			
+			} else if ( first!=='a' || first!=='e' || first!=='i' || first!=='o' || first!=='u' && second!=='a' || second!=='e' || second!=='i' || second!=='o' || second!=='u'  ){	
 		
-		for ( var i = 0; i < eachword.length; i = i + 1) {
+				var secondend = eachword.slice(2,eachword.length);
+				$("#div").append( ay( secondend + first + second ) );
 			
-			var eachletter = eachword[i];
-			
-			if (eachletter !== 'a' || eachletter !== 'e' || eachletter !== 'i' || eachletter !== 'o' || eachletter !== 'u') {  
-			
-				var consonant = eachword.slice (0,i);
-				var last = eachword.slice (i,eachword.length);
-			
-			} else {	
-			
-				var reg = eachword;
-			
+			} else if ( first!=='a' || first!=='e' || first!=='i' || first!=='o' || first!=='u' ) {
+				
+				var firstend = eachword.slice(1,eachword.length);
+				$("#div").append( ay( firstend + first ) );
+				
+			} else{
+				
+				$("#div").append( ay( eachword ) );
+				
 			}
 			
 		}
-		
-		if ( reg === eachword ) {
-			
-			$("#div").append( ay(eachword) );
-			
-		}else {
-			
-			var word = last + consonant;
-			$("#div").append( ay(word) );
-			
-		}
-		
-	}	
-	
-	
 	
 });
 
@@ -88,10 +85,6 @@ $("#button1").click( function() {
 		var removeay = pigLatinWord[ending].slice(0,pigLatinWord[ending].length-2);
 		var lastletter = removeay.slice (removeay.length-1,removeay.length);
 		var coreword = removeay.slice (0,removeay.length-1);
-		
-		console.log(removeay);
-		console.log(lastletter);
-		console.log(coreword);
 		
 		if (lastletter !== 'a' || lastletter !== 'e' || lastletter !== 'i' || lastletter !== 'o' || lastletter !== 'u' ) {  
 			
